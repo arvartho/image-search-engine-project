@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <link href="static/css/bootstrap.min.css" rel="stylesheet">
+   <link href="static/css/signup.css" rel="stylesheet">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+   <!-- <script src="static/js/results.js"></script> -->
+   <title>DWS Advanced DB Topics</title>
+   <style>
+      .res-thumbnail {
+         /* width: 15em !important; */
+         /* height: 15em !important; */
+         /* display: inline-block;
+         height: 100%;
+         vertical-align: middle; */
+         border-bottom: 5px groove rgba(28, 110, 164, 0.16);
+         border-radius: 13px;
+      }
+
+      .my-jumbotron {
+      padding-left: 10%;
+      padding-right: 10%;
+      padding-bottom: 40%;
+      background-color: #104475;
+      color: #dae0e5;
+    }
+
+      .thumbnail-parent {
+         margin-left: auto;
+         margin-right: auto;
+         width: fit-content;
+         border: 2px solid;
+         border-color: white;
+         margin-bottom: 2em;
+         display: contents;
+      }
+
+      .thumbnail-parent-img {
+         border: 2px solid;
+         border-color: whitesmoke;
+         max-height: 100%;
+         max-width: 100%;
+         display: block;
+         margin: 0 auto;
+         padding: 0 auto;
+         
+      }
+
+      .caption {
+         color: #f8f9fa;
+         text-align: center
+      }
+
+      .thumbnail-img {
+         max-height: 100%;
+         max-width: 100%;
+         display: block;
+         margin: 0 auto;
+         vertical-align: middle;
+      }
+
+      footer {
+         position: inherit;
+         bottom: 0;
+         width: 100%;
+         padding-left: 1em;
+         padding-top: 1em;
+      }
+      .display-4 {
+    font-weight: inherit;
+}
+
+
+
+      #back_button:hover {
+         background-color: #6c7c7c;
+      }
+
+      #back_button:active {
+         position: relative;
+         top: 1px;
+      }
+
+      .row {
+      margin: 1em;
+      width: 100%;
+    }
+
+    body{
+    background-color: #f8f9fa;
+    }
+    hr {
+      color: #f8f9fa;
+      border-color: #f8f9fa;
+    }
+   </style>
+</head>
+
+<body>
+   <div class="container-fluid">
+      <div class="jumbotron my-jumbotron">
+         <h1 class="display-4">DWS Advanced DB Topics assignment</h1>
+         <p class="lead">This is an image search engine based on histogram similarity, developed for the Advanced
+            DB Topics cource of DWS Master program.</p>
+         <hr class="my-4">
+         <p>Here are the results of the image database that best fit your query.</p>
+
+         <div class="row thumbnail-parent">
+            <div class="col-sm-6 col-md-6 offset-md-3">
+               <div class="thumbnail res-thumbnail ">
+                  <img class='img_result thumbnail-img ' src="{{ orig_img }}" alt="{{ orig_img }}">
+               </div>
+               <div class="caption">
+                  <p>Original image</p>
+               </div>
+            </div>
+         </div>
+         <div class="container-fluid media">
+            <div class="row">
+               {% for res in results %}
+               <div class="col-sm-6 col-md-3">
+                  <div class="thumbnail">
+                     <img class='img_result thumbnail-img' src="{{ res[1] }}" alt="{{ res[2] }}">
+                  </div>
+                  <div class="caption">
+                     <p>{{ res[2] }} - (score: {{ res[0] }})</p>
+                  </div>
+               </div>
+               {% endfor %}
+            </div>
+         </div>
+         <div class="container-fluid col-sm-1">
+            <a id='back_button' class="btn btn-secondary" href="http://localhost:5000/index">
+               back
+            </a>
+         </div>
+
+      </div>
+      <footer>
+         <p>
+            Designed by <a href="https://github.com/arvartho">arvartho <img
+                  src="https://img.icons8.com/ios-glyphs/30/000000/github.png" /></a>
+         </p>
+      </footer>
+   </div>
+</body>
+
+</html>

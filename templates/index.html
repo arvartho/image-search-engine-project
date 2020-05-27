@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <title>DWS Advanced DB Topics</title>
+
+  <style>
+    .my-jumbotron {
+      padding-left: 10%;
+      padding-right: 10%;
+      padding-bottom: 40%;
+      background-color: #104475;
+      color: #dae0e5;
+    }
+
+    .img_result {
+      width: 10em;
+      height: 10em;
+    }
+
+    .row {
+      margin: 1em;
+      width: 100%;
+    }
+
+    .selection {
+      padding-left: 0px;
+    }
+
+    #my-form {
+      padding-left: 10%;
+      padding-right: 10%;
+      padding-top: 5%;
+    }
+
+    footer {
+      position: inherit;
+      bottom: 0;
+      width: 100%;
+      padding-left: 1em;
+      padding-top: 1em;
+    }
+
+  body{
+    background-color: #f8f9fa;
+    }
+    hr {
+      color: #f8f9fa;
+      border-color: #f8f9fa;
+    }
+
+    .display-4 {
+    font-weight: inherit;
+}
+  </style>
+
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="jumbotron my-jumbotron">
+      <h1 class="display-4">DWS Advanced DB Topics assignment</h1>
+      <p class="lead">This is an image search engine based on histogram similarity, developed for the Advanced
+         DB Topics cource of DWS Master program.</p>
+      <hr class="my-4">
+      <p>The database consists of celebrities headshot images selected randomly from the web. The algorithm 
+         detects the face in the image and divides the region around it in segements, then calculates the 
+         histogram of each segment and uses it as the descriptor vector. The engine will return the k most similar 
+         images according to the selected distance metric.</p>
+      <h6 class="display-8">Give it a try:</h6>
+      <div class="col-md-8 offset-md-0" id="my-form">
+        <form action="http://localhost:5000/queryImage" method="POST" enctype="multipart/form-data">
+          <div class="container">
+            <div class="row">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile" name='filename'>
+                <label class="custom-file-label" for="customFile">Choose file</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 selection">
+                <label for="demo_overview">Select a distance measure:</label>
+                <select name="distance_selection" id="distance_selection" class="form-control"
+                  data-role="select-dropdown">
+                  <option value="d_1">Euclidean</option>
+                  <option value="d_2">Manhattan</option>
+                  <option value="d_3">Hamming</option>
+                  <option value="d_4">Chebyshev</option>
+                  <option value="d_5">Canberra</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="demo_overview selection">Select number of neighbors (k):</label>
+                <select name="k_selection" id="k_selection" class="form-control" data-role="select-dropdown">
+                  <option value="5">k = 5</option>
+                  <option value="10">k = 10</option>
+                  <option value="20">k = 20</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <button id='search_button' class="btn btn-secondary" type="submit">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                Search
+              </button>
+            </div>
+
+          </div>
+
+        </form>
+        <p id="value_lable">
+          {{message}}
+        </p>
+      </div>
+    </div>
+    <footer>
+      <p>
+        Designed by <a href="https://github.com/arvartho">arvartho <img src="https://img.icons8.com/ios-glyphs/30/000000/github.png"/></a>
+      </p>
+    </footer>
+  </div>
+</body>
+
+</html>
